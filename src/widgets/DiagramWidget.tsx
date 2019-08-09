@@ -442,7 +442,7 @@ export class DiagramWidget extends BaseWidget<DiagramProps, DiagramState> {
 						let scrollDelta = this.props.scrollSensitivity*(this.props.inverseZoom ? -event.deltaY : event.deltaY)/Math.abs(event.deltaY);
 						
 						const newZoomLevel = diagramModel.getZoomLevel() + (diagramModel.getZoomLevel()/2 * (scrollDelta));
-						if (newZoomLevel > 20) {
+						if (newZoomLevel > 20 && newZoomLevel < 500) {
 							diagramModel.setZoomLevel(newZoomLevel);
 						}
 

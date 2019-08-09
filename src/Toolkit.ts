@@ -1,5 +1,5 @@
 // tslint:disable no-bitwise
-import closest = require("closest");
+import closest from "closest"
 import { PointModel } from "./models/PointModel";
 import { ROUTING_SCALING_FACTOR } from "./routing/PathFinding";
 import * as Path from "paths-js/path";

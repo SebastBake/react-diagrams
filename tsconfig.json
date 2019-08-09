@@ -4,7 +4,7 @@
 	"compilerOptions": {
 		"suppressExcessPropertyErrors": true,
 		"declaration": true,
-		"outDir": "dist/",
+		"outDir": "dist/@types",
 		"strictNullChecks": false,
 		"sourceMap": true,
 		"skipLibCheck": true,
