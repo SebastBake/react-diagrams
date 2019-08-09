@@ -1,0 +1,1 @@
+{"version":3,"file":"BaseAction.js","sourceRoot":"","sources":["../../src/actions/BaseAction.ts"],"names":[],"mappings":";;AAAA,MAAa,UAAU;IAKtB,YAAY,MAAc,EAAE,MAAc;QACzC,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;QACrB,IAAI,CAAC,MAAM,GAAG,MAAM,CAAC;QACrB,IAAI,CAAC,EAAE,GAAG,IAAI,IAAI,EAAE,CAAC,OAAO,EAAE,CAAC;IAChC,CAAC;CACD;AAVD,gCAUC"}
