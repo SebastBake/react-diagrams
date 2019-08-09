@@ -19,6 +19,7 @@ import { BaseWidget, BaseWidgetProps } from "./BaseWidget";
 
 export interface DiagramProps extends BaseWidgetProps {
 	diagramEngine: DiagramEngine;
+	scrollSensitivity?: number;
 
 	allowLooseLinks?: boolean;
 	allowCanvasTranslation?: boolean;
@@ -55,7 +56,8 @@ export class DiagramWidget extends BaseWidget<DiagramProps, DiagramState> {
 		inverseZoom: false,
 		maxNumberPointsPerLink: Infinity, // backwards compatible default
 		smartRouting: false,
-		deleteKeys: [46, 8]
+		deleteKeys: [46, 8],
+		scrollSensitivity: 0.2
 	};
 
 	onKeyUpPointer: (this: Window, ev: KeyboardEvent) => void = null;
@@ -433,22 +435,15 @@ export class DiagramWidget extends BaseWidget<DiagramProps, DiagramState> {
 				}}
 				onWheel={event => {
 					if (this.props.allowCanvasZoom) {
-						event.preventDefault();
+						// event.preventDefault();
 						event.stopPropagation();
 						const oldZoomFactor = diagramModel.getZoomLevel() / 100;
-						let scrollDelta = this.props.inverseZoom ? -event.deltaY : event.deltaY;
-						//check if it is pinch gesture
-						if (event.ctrlKey && scrollDelta % 1 !== 0) {
-							/*Chrome and Firefox sends wheel event with deltaY that
-                have fractional part, also `ctrlKey` prop of the event is true
-                though ctrl isn't pressed
-              */
-							scrollDelta /= 3;
-						} else {
-							scrollDelta /= 60;
-						}
-						if (diagramModel.getZoomLevel() + scrollDelta > 10) {
-							diagramModel.setZoomLevel(diagramModel.getZoomLevel() + scrollDelta);
+
+						let scrollDelta = this.props.scrollSensitivity*(this.props.inverseZoom ? -event.deltaY : event.deltaY)/Math.abs(event.deltaY);
+						
+						const newZoomLevel = diagramModel.getZoomLevel() + (diagramModel.getZoomLevel()/2 * (scrollDelta));
+						if (newZoomLevel > 20) {
+							diagramModel.setZoomLevel(newZoomLevel);
 						}
 
 						const zoomFactor = diagramModel.getZoomLevel() / 100;
