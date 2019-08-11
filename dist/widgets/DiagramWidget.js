@@ -344,9 +344,10 @@ class DiagramWidget extends BaseWidget_1.BaseWidget {
                     // event.preventDefault();
                     event.stopPropagation();
                     const oldZoomFactor = diagramModel.getZoomLevel() / 100;
-                    let scrollDelta = this.props.scrollSensitivity * (this.props.inverseZoom ? -event.deltaY : event.deltaY) / Math.abs(event.deltaY);
-                    const newZoomLevel = diagramModel.getZoomLevel() + (diagramModel.getZoomLevel() / 2 * (scrollDelta));
-                    if (newZoomLevel > 20 && newZoomLevel < 500) {
+                    const scrollDelta = this.props.scrollSensitivity * (this.props.inverseZoom ? -event.deltaY : event.deltaY) / Math.abs(event.deltaY);
+                    const currentZoom = diagramModel.getZoomLevel();
+                    const newZoomLevel = currentZoom + (currentZoom * (scrollDelta / 2));
+                    if ((scrollDelta < 0 && newZoomLevel > 20) || (scrollDelta > 0 && newZoomLevel < 500)) {
                         diagramModel.setZoomLevel(newZoomLevel);
                     }
                     const zoomFactor = diagramModel.getZoomLevel() / 100;
