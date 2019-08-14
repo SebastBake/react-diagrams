@@ -1,6 +1,9 @@
-dist
+
+/package
+*.tgz
 .DS_Store
 .idea
+
 .out
 *.zip
 .env

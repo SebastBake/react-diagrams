@@ -17,7 +17,6 @@
 		"nodes"
 	],
 	"main": "./dist/main.js",
-	"typings": "./dist/@types/main",
 	"author": "dylanvorster",
 	"scripts": {
 		"build:ts": "webpack",
@@ -32,11 +31,13 @@
 		"test": "jest --no-cache",
 		"prepublishOnly": "rm -rf ./dist && yarn run build:ts:prod && yarn run build:sass:prod"
 	},
-	"peerDependencies": {
+	"dependencies": {
 		"closest": "^0.0.1",
 		"lodash": "4.*",
 		"pathfinding": "^0.4.18",
-		"paths-js": "^0.4.9",
+		"paths-js": "^0.4.9"
+	},
+	"peerDependencies": {
 		"react": "16.*"
 	},
 	"devDependencies": {
